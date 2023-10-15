@@ -1,7 +1,17 @@
+import { useLoaderData } from "react-router-dom";
+import CoffeeCard from "../CoffeeCard/CoffeeCard";
+
 const Home = () => {
+  const coffees = useLoaderData();
+
   return (
     <div>
-      <h2>This is home page</h2>
+      <h2 className="text-center">Hot hot cold coffee: {coffees.length}</h2>
+      <div className="grid grid-cols-2 gap-4 container mx-auto mt-20">
+        {coffees.map((coffee) => (
+          <CoffeeCard key={coffee._id} coffee={coffee}></CoffeeCard>
+        ))}
+      </div>
     </div>
   );
 };
