@@ -1,7 +1,36 @@
 import PropTypes from "prop-types";
+import Swal from "sweetalert2";
 
 const CoffeeCard = ({ coffee }) => {
-  const { name, chef, taste, photo } = coffee;
+  const { _id, name, chef, taste, photo } = coffee;
+
+  const handleDelete = (id) => {
+    console.log(id);
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/coffee/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your Coffee has been deleted.", "success");
+            }
+          });
+      }
+    });
+  };
+
   return (
     <div className="bg-[#F5F4F1] py-8 pl-8 pr-12 rounded-xl">
       <div className="grid grid-cols-4 gap-4">
@@ -35,8 +64,13 @@ const CoffeeCard = ({ coffee }) => {
           </div>
           <div className="flex flex-col space-y-4">
             <button className="btn btn-neutral">View</button>
-            <button className="btn btn-neutral">Edit</button>
-            <button className="btn btn-neutral">Delete</button>
+            <button className="btn btn-accent">Edit</button>
+            <button
+              onClick={() => handleDelete(_id)}
+              className="btn bg-red-600 text-white hover:text-black"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>
