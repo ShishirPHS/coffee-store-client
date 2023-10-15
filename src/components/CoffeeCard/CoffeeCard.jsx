@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const CoffeeCard = ({ coffee }) => {
@@ -33,7 +34,7 @@ const CoffeeCard = ({ coffee }) => {
 
   return (
     <div className="bg-[#F5F4F1] py-8 pl-8 pr-12 rounded-xl">
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-4 h-full">
         <div className="col-span-1">
           <img
             className="rounded-lg h-full object-cover"
@@ -63,11 +64,13 @@ const CoffeeCard = ({ coffee }) => {
             </p>
           </div>
           <div className="flex flex-col space-y-4">
-            <button className="btn btn-neutral">View</button>
-            <button className="btn btn-accent">Edit</button>
+            <button className="btn btn-neutral btn-sm">View</button>
+            <Link to={`/updateCoffee/${_id}`}>
+              <button className="btn btn-accent btn-sm w-full">Edit</button>
+            </Link>
             <button
               onClick={() => handleDelete(_id)}
-              className="btn bg-red-600 text-white hover:text-black"
+              className="btn btn-sm bg-red-600 text-white hover:text-black"
             >
               Delete
             </button>
