@@ -40,7 +40,7 @@ const SignIn = () => {
             />
           </div>
           <div className="form-control mt-6">
-            <button className="btn btn-primary normal-case">SignIn</button>
+            <button className="btn btn-neutral normal-case">SignIn</button>
           </div>
         </form>
       </div>
