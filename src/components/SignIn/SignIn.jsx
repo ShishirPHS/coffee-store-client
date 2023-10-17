@@ -18,13 +18,16 @@ const SignIn = () => {
         const user = { email, lastLoggedAt };
 
         // update last logged at in the database
-        fetch("http://localhost:5000/user", {
-          method: "PATCH",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(user),
-        })
+        fetch(
+          "https://coffee-store-server-oqw052of9-shishir-ahmeds-projects.vercel.app/user",
+          {
+            method: "PATCH",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(user),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
